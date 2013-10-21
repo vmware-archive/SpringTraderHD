@@ -43,6 +43,11 @@ DROP TABLE ACCOUNT;
 
 DROP TABLE ACCOUNTPROFILE;
 
+-- -----------------------------------------------------------------------
+-- BUSY_STOCK
+-- -----------------------------------------------------------------------
+
+DROP TABLE BUSY_STOCK;
 
 -- ----------------------------------------------------------------------- 
 -- PROCEDURE CHAOSFUNCTION 
@@ -55,7 +60,7 @@ DROP PROCEDURE CHAOSFUNCTION;
 -- -----------------------------------------------------------------------
 
 CREATE HDFSSTORE st_datastore
-    NameNode 'hdfs://127.0.0.1:9000'
+    NameNode 'hdfs://localhost:9000'
     HomeDir 'st-tables'
     BatchSize 10
     BatchTimeInterval 2000
@@ -191,6 +196,18 @@ REPLICATE;
 --);
 
 CREATE UNIQUE INDEX QUOTE_SYMBOL_KEY ON QUOTE (SYMBOL);
+
+-- ------------------------------------------------------------------------
+-- BUSY_STOCK
+-- ------------------------------------------------------------------------
+
+CREATE TABLE BUSY_STOCK
+(
+    QUOTESYMBOL VARCHAR(250) NOT NULL,
+    COUNT INTEGER
+)
+PERSISTENT;
+
 
 ALTER TABLE ACCOUNT
     ADD CONSTRAINT FKE49F160D2BA34895 FOREIGN KEY (PROFILE_PROFILEID) REFERENCES ACCOUNTPROFILE (PROFILEID);

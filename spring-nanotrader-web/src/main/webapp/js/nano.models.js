@@ -251,6 +251,32 @@ nano.models.Order = Backbone.Model.extend({
     }
 });
 
+nano.models.BusyStock = Backbone.Model.extend({
+	idAttribute: 'busystockid',
+	//urlRoot : nano.conf.urls.analytics
+});
+
+nano.models.BusyStocks = Backbone.Collection.extend({
+	model: nano.models.BusyStock,
+	
+	initialize: function(options) {
+		this.accountid = options.accountid;
+		this.page = options.page || 1;
+	},
+	
+	urlRoot : nano.conf.urls.analytics,
+	
+	url : function() {
+		//return this.urlRoot.replace(nano.conf.accountIdUrlKey, this.accountid);
+		return this.urlRoot;
+	},
+	
+	sync: nano.utils.collectionSync,
+	
+	parse: nano.utils.collectionParse
+});
+
+
 /**
  * Model to interact with the Quote Object
  * @author Jean Chassoul <jean.chassoul>
@@ -271,6 +297,7 @@ nano.models.Quote = Backbone.Model.extend({
 
 nano.models.Quotes = Backbone.Collection.extend({
     model : nano.models.Quote,
+    
     urlRoot : nano.conf.urls.quotes,
     url : function() {
         return this.urlRoot;

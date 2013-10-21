@@ -79,4 +79,6 @@ public interface TradingServiceFacade {
 	void setTradingService(TradingService tradingService);
 	
 	void killServer();
+	
+	CollectionResult findBusyStock(Integer page, Integer pageSize);
 }

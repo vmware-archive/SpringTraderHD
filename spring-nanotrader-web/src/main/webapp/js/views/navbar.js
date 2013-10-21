@@ -34,7 +34,8 @@ nano.views.Navbar = Backbone.View.extend({
             portfolioIcon : 'nb-portfolio-icon',
             trade : 'nb-trade',
             tradeIcon : 'nb-trade-icon',
-            profile : 'fat-menu'
+            profile : 'fat-menu',
+            analytics : 'nb-analytics'
         };
     },
     
@@ -84,6 +85,7 @@ nano.views.Navbar = Backbone.View.extend({
         hashMap[nano.conf.hash.portfolio] = this.ids.portfolio;
         hashMap[nano.conf.hash.trade] = this.ids.trade;
         hashMap[nano.conf.hash.profile] = this.ids.profile;
+        hashMap[nano.conf.hash.analytics] = this.ids.analytics;
         for (i in this.linkContainers) {
             if (hashMap[hash] === i) {
                 this.linkContainers[i].addClass('active');
@@ -149,6 +151,9 @@ nano.views.Navbar = Backbone.View.extend({
             case this.ids.tradeIcon:
                 window.location = nano.conf.hash.trade;
                 break;
+            case this.ids.analytics:
+            	window.location = nano.conf.hash.analytics;
+            	break;
             case this.ids.dashboard:
             default:
                 window.location = nano.conf.hash.dashboard;

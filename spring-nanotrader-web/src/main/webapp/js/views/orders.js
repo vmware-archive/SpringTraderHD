@@ -83,6 +83,7 @@ nano.views.Orders = Backbone.View.extend({
         if (pageCount > 0) {
             // Render the list of orders
             this.renderRows(model);
+            //alert("model size" + pageCount);
         } else {
             // Render a no orders message
             this.noOrders();

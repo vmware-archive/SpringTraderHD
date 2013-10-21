@@ -6,6 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
         </a>
           <a href="<%= nano.conf.hash.dashboard %>"class="logo brand"><%= translate("nanotrader") %></a>
           <div class="nav-collapse">
@@ -16,6 +17,8 @@
                   <li><a id="nb-portfolio" class="nav-link"><span id="nb-portfolio-icon" class="icon-custom icon-portfolio"></span><%= translate("portfolio") %></a></li>
                   <li class="divider-vertical"></li>
                   <li><a id="nb-trade" class="nav-link"><span id="nb-trade-icon" class="icon-custom icon-trade"></span><%= translate("trade") %></a></li>
+                  <li class="divider-vertical"></li>
+                  <li><a id="nb-analytics" class="nav-link"></span><%= translate("analytics") %></a></li>
                   <li class="divider-vertical"></li>
               </ul>
               <div class="navbar-text pull-right">

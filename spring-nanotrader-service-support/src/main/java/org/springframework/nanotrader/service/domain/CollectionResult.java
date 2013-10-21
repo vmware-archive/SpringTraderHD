@@ -42,8 +42,8 @@ public class CollectionResult {
 	public Long getTotalRecords() {
 		return totalRecords;
 	}
-	public void setTotalRecords(Long totalRecords) {
-		this.totalRecords = totalRecords;
+	public void setTotalRecords(Long totalRecords2) {
+		this.totalRecords = totalRecords2;
 	}
 	
 	public List<?> getResults() {

@@ -20,6 +20,7 @@ import java.util.Set;
 
 import org.springframework.nanotrader.data.domain.Account;
 import org.springframework.nanotrader.data.domain.Accountprofile;
+import org.springframework.nanotrader.data.domain.BusyStock;
 import org.springframework.nanotrader.data.domain.Holding;
 import org.springframework.nanotrader.data.domain.HoldingSummary;
 import org.springframework.nanotrader.data.domain.MarketSummary;
@@ -99,4 +100,8 @@ public interface TradingService {
 	public abstract void killServer(); 
 	
 	public void updateQuote(Quote quote);
+	
+	public List<BusyStock> findBusyStock(Integer page, Integer pageSize);
+	
+	public Long findCountOfBusyStock();
 }

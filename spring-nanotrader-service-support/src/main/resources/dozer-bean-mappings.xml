@@ -103,4 +103,8 @@
 		<class-b>org.springframework.nanotrader.service.domain.HoldingSummary</class-b>
 	</mapping>
 	
+	<mapping map-id="busyStock">
+		<class-a>org.springframework.nanotrader.data.domain.BusyStock</class-a>
+		<class-b>org.springframework.nanotrader.service.domain.BusyStock</class-b>
+	</mapping>
 </mappings>

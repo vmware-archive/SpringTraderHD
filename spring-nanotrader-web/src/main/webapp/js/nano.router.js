@@ -36,7 +36,11 @@ nano.Router = Backbone.Router.extend({
         "profile": "profile",
         "contact": "contact",
         "admin": "admin",
-        "overview": "overview"
+        "overview": "overview" ,
+        
+    // Analytics Page
+     "analytics" : "analytics",
+     "analytics/p:page" : "anlytics"	 
     },
 
     initialize: function () {
@@ -62,7 +66,9 @@ nano.Router = Backbone.Router.extend({
         nano.instances.overview = new nano.views.Overview({el: '#nc-overview'});
         nano.instances.admin = new nano.views.Admin({el: '#nc-admin'});
         nano.instances.leftnavbar = new nano.views.Leftnavbar({el : '#nc-leftnavbar'}); // Left navbar for profile, overview, help and admin
-
+        
+        nano.instances.busystock = new nano.views.BusyStock({el:'#nc-busystock'}); 
+        
         //Store the dom Object for the loading message div.
         nano.containers.loading = $('#nc-loading');
 
@@ -200,7 +206,50 @@ nano.Router = Backbone.Router.extend({
 			nano.instances.router.navigate(nano.conf.hash.login, true);
 		}
     },
-
+    
+    analytics : function (page) {
+    	'use strict';
+    	if (isNaN(page)) {
+			page = 1;
+    	}
+		var modelCount = 0,
+			models = {},	    
+			/**
+			 * Function that checks if all data has been fetched so that it can then render the page
+			 */
+			onFetchSuccess = function () {
+				if (++modelCount === _.keys(models).length) {
+					// If all models have been fetched, then render all of the views needed for the Dashboard
+					nano.containers.loading.hide();
+					nano.instances.busystock.render(models.busystock, page, nano.conf.hash.analytics);
+					nano.instances.footer.render();
+				}
+			};
+		
+		if (nano.utils.loggedIn()) {
+			// Load all quote Symbols in localstorage
+			// Symbols from localStorage is used on trade page to autocomplete
+			// the quote input field
+			//nano.utils.loadSymbols();
+		
+			nano.utils.hideAll();
+			nano.containers.loading.show();
+			nano.instances.navbar.render();
+	
+			models = {
+				busystock : new nano.models.BusyStocks({accountid : nano.session.accountid})
+			};
+				for (var i in models) {
+					models[i].fetch({
+						success : onFetchSuccess,
+						error : nano.utils.onApiError
+					});
+				}
+		} else {
+			nano.instances.router.navigate(nano.conf.hash.login, true);
+		}
+    },
+    
     login: function (error) {
         'use strict';
         if (nano.utils.loggedIn()) {

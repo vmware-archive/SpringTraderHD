@@ -42,7 +42,9 @@ nano.conf.urls = {
     killTCServer : nano.conf.urlRoot + 'chaos/kill',
     crashTCServer : nano.conf.urlRoot + 'chaos/oom',
     killSqlFireServer: nano.conf.urlRoot + '/chaos/killsql',
-    perfTest : nano.conf.urlRoot + 'admin/perftest'
+    perfTest : nano.conf.urlRoot + 'admin/perftest',
+    //analytics : nano.conf.urlRoot + 'account/' + nano.conf.accountIdUrlKey +'/analytics'
+    analytics: nano.conf.urlRoot + 'analytics'
 };
 
 nano.conf.tpls = {
@@ -74,7 +76,9 @@ nano.conf.tpls = {
     admin : nano.conf.tplRoot + 'admin.tpl',
     leftnavbar : nano.conf.tplRoot + 'leftnavbar.tpl',
     vfabricServers : nano.conf.tplRoot + 'vfabricServers.tpl',
-    vfabricServerRow : nano.conf.tplRoot + 'vfabricServerRow.tpl'
+    vfabricServerRow : nano.conf.tplRoot + 'vfabricServerRow.tpl',
+    busystock : nano.conf.tplRoot + 'busystock.tpl',
+    busystockRow : nano.conf.tplRoot + 'busystockRow.tpl'
 };
 
 /**
@@ -95,5 +99,6 @@ nano.conf.hash = {
     contact : '#contact',
     help : '#help',
     overview : '#overview',
-    admin : '#admin'
+    admin : '#admin',
+    analytics : '#analytics'
 };

@@ -13,9 +13,12 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 	
 	<http create-session="stateless" pattern="/api/marketSummary" security="none" />
 
+	<http create-session="stateless" pattern="/api/analytics" security="none" />
 	
-	
-	<!-- Protect all the nanotrader services -->
+	<!--  
+	<http create-session="stateless" pattern="/api/**" security="none" />
+	-->
+	<!-- Protect all the nanotrader services -->  
 	<http create-session="stateless" entry-point-ref="entryPoint">
 		<intercept-url pattern="/api/chaos/*" access="ROLE_API_ADMIN" />
 		<intercept-url pattern="/api/admin/*" access="ROLE_API_ADMIN" />
@@ -23,7 +26,6 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 		<custom-filter ref="restPreauthFilter" position="PRE_AUTH_FILTER" />
 	</http>
 	
-
 	<authentication-manager alias="authenticationManager">
 		<authentication-provider ref="preauthAuthProvider" />
 	</authentication-manager>

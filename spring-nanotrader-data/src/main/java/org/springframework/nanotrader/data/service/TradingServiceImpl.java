@@ -34,6 +34,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.nanotrader.data.domain.Account;
 import org.springframework.nanotrader.data.domain.Accountprofile;
+import org.springframework.nanotrader.data.domain.BusyStock;
 import org.springframework.nanotrader.data.domain.Holding;
 import org.springframework.nanotrader.data.domain.HoldingSummary;
 import org.springframework.nanotrader.data.domain.MarketSummary;
@@ -42,6 +43,7 @@ import org.springframework.nanotrader.data.domain.PortfolioSummary;
 import org.springframework.nanotrader.data.domain.Quote;
 import org.springframework.nanotrader.data.repository.AccountProfileRepository;
 import org.springframework.nanotrader.data.repository.AccountRepository;
+import org.springframework.nanotrader.data.repository.BusyStockRepository;
 import org.springframework.nanotrader.data.repository.ChaosProceduresRepository;
 import org.springframework.nanotrader.data.repository.HoldingAggregateRepository;
 import org.springframework.nanotrader.data.repository.HoldingRepository;
@@ -99,6 +101,9 @@ public class TradingServiceImpl implements TradingService {
 
 	@Autowired 
 	ChaosProceduresRepository chaosProceduresRepository;
+	
+	@Autowired 
+	private BusyStockRepository busyStockRepository;
 	
 	@Autowired
 	QuotePublisher quotePublisher;
@@ -658,4 +663,15 @@ public class TradingServiceImpl implements TradingService {
 
 		void publishQuote(Quote quote);
 	}
+	
+	@Override
+	public List<BusyStock> findBusyStock(Integer page, Integer pageSize) {
+		return busyStockRepository.findBusyStock(new PageRequest(page, pageSize));
+	}
+
+	@Override
+	public Long findCountOfBusyStock() {
+		return busyStockRepository.findCountOfBusyStock();
+	}
+	
 }

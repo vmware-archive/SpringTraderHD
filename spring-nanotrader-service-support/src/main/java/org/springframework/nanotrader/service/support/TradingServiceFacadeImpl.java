@@ -33,6 +33,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.nanotrader.data.service.TradingService;
 import org.springframework.nanotrader.service.domain.Account;
 import org.springframework.nanotrader.service.domain.Accountprofile;
+import org.springframework.nanotrader.service.domain.BusyStock;
 import org.springframework.nanotrader.service.domain.CollectionResult;
 import org.springframework.nanotrader.service.domain.Holding;
 import org.springframework.nanotrader.service.domain.HoldingSummary;
@@ -72,6 +73,8 @@ public class TradingServiceFacadeImpl implements TradingServiceFacade {
     private static final String MARKET_SUMMARY_MAPPING = "marketSummary";
     
     private static final String HOLDING_SUMMARY_MAPPING = "holdingSummary";
+    
+    private static final String BUSY_STOCK_MAPPING = "busyStock";
     
     private static Integer DEFAULT_PAGE = 0;
     
@@ -467,6 +470,28 @@ public class TradingServiceFacadeImpl implements TradingServiceFacade {
         void sendOrder(Order order);
     }
 
+
+	@Override
+	public CollectionResult findBusyStock(Integer page, Integer pageSize) {
+		CollectionResult  collectionResults = new CollectionResult();
+        if (log.isDebugEnabled()) {
+            log.debug("BusyStockController.findBusyStock: Start!");
+        }
+        List<org.springframework.nanotrader.data.domain.BusyStock> stocks = tradingService.findBusyStock(page, pageSize);
+        
+        List<BusyStock> responseStocks = new ArrayList<BusyStock>();
+        collectionResults.setTotalRecords(tradingService.findCountOfBusyStock());
+        
+        for(org.springframework.nanotrader.data.domain.BusyStock o: stocks) {
+            BusyStock busyStock = new BusyStock();
+            mapper.map(o, busyStock, BUSY_STOCK_MAPPING);
+            responseStocks.add(busyStock);
+        }
+        collectionResults.setPage(getPage(page));
+        collectionResults.setPageSize(getPageSize(pageSize));
+        collectionResults.setResults(responseStocks);
+        return collectionResults;
+	}
 
 
 }
