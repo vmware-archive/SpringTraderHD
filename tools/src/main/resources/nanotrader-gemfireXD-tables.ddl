@@ -62,8 +62,8 @@ DROP PROCEDURE CHAOSFUNCTION;
 CREATE HDFSSTORE st_datastore
     NameNode 'hdfs://localhost:9000'
     HomeDir 'st-tables'
-    BatchSize 10
-    BatchTimeInterval 2000
+    BatchSize 100
+    BatchTimeInterval 60000
     QueuePersistent true;
 
 -- ----------------------------------------------------------------------- 
@@ -107,6 +107,7 @@ CREATE TABLE ACCOUNT
     PRIMARY KEY (ACCOUNTID)
 )
 PERSISTENT
+BUCKETS 12
 HDFSSTORE (st_datastore)
 PARTITION BY PRIMARY KEY;
 
@@ -163,6 +164,7 @@ CREATE TABLE ORDERS
 )
 PARTITION BY COLUMN (ACCOUNT_ACCOUNTID)
 COLOCATE WITH (ACCOUNT)
+BUCKETS 12
 HDFSSTORE (st_datastore);
 
 CREATE INDEX ORDERS_HOLDING_HOLDINGID_KEY ON ORDERS (HOLDING_HOLDINGID);
