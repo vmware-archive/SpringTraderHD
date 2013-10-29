@@ -194,6 +194,27 @@ project('spring-nanotrader-data') {
 	}
 }
 
+project('spring-nanotrader-mapreduce') {
+	apply plugin: 'java'
+	apply plugin: 'maven'
+
+	group = 'com.gopivotal.mr'
+	version = '1.0-SNAPSHOT'
+
+	description = 'spring-nanotrader-mapreduce'
+
+
+	repositories {
+        maven { url "http://repo.maven.apache.org/maven2" }
+     	mavenLocal()
+	}
+	dependencies {
+    	compile group: 'org.apache.hadoop', name: 'hadoop-client', version:'2.0.2-alpha'
+    	compile group: 'com.gopivotal.sqlfire', name: 'sqlfire', version:'1.0'
+    	testCompile group: 'junit', name: 'junit', version:'3.8.1'
+	}
+}
+
 project('tools') {
 	apply plugin: 'groovy'
 
