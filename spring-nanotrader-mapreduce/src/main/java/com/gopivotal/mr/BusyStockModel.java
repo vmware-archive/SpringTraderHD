@@ -8,7 +8,7 @@ import java.sql.SQLException;
  *
  * CREATE TABLE BUSY_STOCK
  *    (
- *        QUOTE_SYMBOL VARCHAR(250),
+ *        QUOTESYMBOL VARCHAR(250),
  *        COUNT INT
  *    )
  *

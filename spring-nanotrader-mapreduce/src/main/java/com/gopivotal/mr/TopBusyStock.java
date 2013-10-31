@@ -29,14 +29,6 @@ import com.vmware.sqlfire.internal.engine.SqlfDataSerializable;
 
 public class TopBusyStock extends Configured implements Tool {
 
-  /**
-   * Mapper used for first job. Produces tuples of the form:
-   * 
-   * MIA 1 JFK 1
-   * 
-   * This job is configured with a standard IntSumReducer to produce totals for
-   * each airport code.
-   */
   public static class SampleMapper extends MapReduceBase implements
       Mapper<Object, Row, Text, IntWritable> {
 
