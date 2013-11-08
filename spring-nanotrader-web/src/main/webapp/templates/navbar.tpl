@@ -18,7 +18,7 @@
                   <li class="divider-vertical"></li>
                   <li><a id="nb-trade" class="nav-link"><span id="nb-trade-icon" class="icon-custom icon-trade"></span><%= translate("trade") %></a></li>
                   <li class="divider-vertical"></li>
-                  <li><a id="nb-analytics" class="nav-link"></span><%= translate("analytics") %></a></li>
+                  <li><a id="nb-analytics" class="nav-link"><%= translate("analytics") %></a></li>
                   <li class="divider-vertical"></li>
               </ul>
               <div class="navbar-text pull-right">
