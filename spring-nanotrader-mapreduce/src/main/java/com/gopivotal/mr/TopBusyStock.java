@@ -81,7 +81,7 @@ public class TopBusyStock extends Configured implements Tool {
     JobConf conf = new JobConf(getConf());
     conf.setJobName("Busy Stock Count");
 
-    String hdfsHomeDir = "/user/liquanpei/st-tables";
+    String hdfsHomeDir = "./st-tables";
     String tableName = "NANOTRADER.ORDERS";
 
     conf.set(RowInputFormat.HOME_DIR, hdfsHomeDir);
